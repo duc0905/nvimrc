@@ -90,8 +90,11 @@ P.S. You can delete this when you're done too. It's your config now! :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+vim.opt.conceallevel = 2
+vim.opt.relativenumber = true
+
 -- Set to true if you have a Nerd Font installed
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 -- [[ Setting options ]]
 -- See `:help vim.opt`
@@ -176,10 +179,10 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
+vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
+vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
+vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
@@ -538,9 +541,10 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
+        clangd = {},
+        cmake = {},
         -- gopls = {},
-        -- pyright = {},
+        pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -548,7 +552,7 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-        -- tsserver = {},
+        tsserver = {},
         --
 
         lua_ls = {
@@ -646,9 +650,9 @@ require('lazy').setup({
           -- Build Step is needed for regex support in snippets.
           -- This step is not supported in many windows environments.
           -- Remove the below condition to re-enable on windows.
-          if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
-            return
-          end
+          -- if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
+          --   return
+          -- end
           return 'make install_jsregexp'
         end)(),
         dependencies = {
@@ -739,7 +743,31 @@ require('lazy').setup({
       }
     end,
   },
+  {
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    config = true,
+    -- use opts = {} for passing setup options
+    -- this is equalent to setup({}) function
+  },
+  {
+    'nvim-tree/nvim-tree.lua',
+    version = '*',
+    lazy = false,
+    dependencies = {
+      'nvim-tree/nvim-web-devicons',
+    },
+    config = function()
+      require('nvim-tree').setup {
+        view = {
+          width = 25,
+        },
+      }
+      local api = require 'nvim-tree.api'
 
+      vim.keymap.set('n', '<C-e>', api.tree.focus, { desc = 'Toggle nvim-tree' })
+    end,
+  },
   { -- You can easily change to a different colorscheme.
     -- Change the name of the colorscheme plugin below, and then
     -- change the command in the config to whatever the name of that colorscheme is.
@@ -802,7 +830,26 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc' },
+      ensure_installed = {
+        'bash',
+        'c',
+        'cpp',
+        'cmake',
+        'lua',
+        'luadoc',
+        'html',
+        'css',
+        'javascript',
+        'json',
+        'typescript',
+        'tsx',
+        'markdown',
+        'markdown_inline',
+        'python',
+        'sql',
+        'vim',
+        'vimdoc',
+      },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
@@ -841,6 +888,54 @@ require('lazy').setup({
   -- require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
+
+  -- NOTE: This is my own plugins
+  require 'kickstart.plugins.notes-taking',
+  -- require 'custom.plugins',
+  {
+    'mfussenegger/nvim-dap',
+    config = function()
+      local api = require 'dap'
+
+      -- TODO: Complete these mappings
+      -- TODO: Move these into debug.lua file
+      vim.keymap.set('n', '<F5>', api.continue)
+      vim.keymap.set('n', '<F10>', api.step_over)
+      vim.keymap.set('n', '<F11>', api.step_into)
+      vim.keymap.set('n', '<F12>', api.step_out)
+      vim.keymap.set('n', '<Leader>b', api.toggle_breakpoint)
+      vim.keymap.set('n', '<Leader>B', api.set_breakpoint)
+      vim.keymap.set('n', '<Leader>lp', function()
+        api.set_breakpoint(nil, nil, vim.fn.input 'Log point message: ')
+      end)
+      vim.keymap.set('n', '<Leader>dr', api.repl.open)
+      vim.keymap.set('n', '<Leader>dl', api.run_last)
+      -- vim.keymap.set({ 'n', 'v' }, '<Leader>dh', function()
+      --   require('dap.ui.widgets').hover()
+      -- end)
+      -- vim.keymap.set({ 'n', 'v' }, '<Leader>dp', function()
+      --   require('dap.ui.widgets').preview()
+      -- end)
+      -- vim.keymap.set('n', '<Leader>df', function()
+      --   local widgets = require 'dap.ui.widgets'
+      --   widgets.centered_float(widgets.frames)
+      -- end)
+      -- vim.keymap.set('n', '<Leader>ds', function()
+      --   local widgets = require 'dap.ui.widgets'
+      --   widgets.centered_float(widgets.scopes)
+      -- end)
+    end,
+  },
+  {
+    'mfussenegger/nvim-dap-python',
+    dependencies = {
+      'mfussenegger/nvim-dap',
+      'nvim-treesitter/nvim-treesitter',
+    },
+    config = function()
+      require('dap-python').setup '~/AppData/Local/nvim/.virtualenvs/debugpy/Scripts/python.exe'
+    end,
+  },
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
