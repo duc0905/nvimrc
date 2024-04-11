@@ -26,6 +26,7 @@ return {
         daily_notes = {
           -- Optional, if you keep daily notes in a separate directory.
           folder = 'dailies',
+          template = 'daily.md',
         },
         mappings = {},
       }
