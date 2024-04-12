@@ -41,7 +41,7 @@ return {
       vim.keymap.set('n', '<leader>oo', '<cmd>ObsidianOpen<CR>', { desc = '[O]bsidian [O]pen note' })
       vim.keymap.set('n', '<leader>onn', '<cmd>ObsidianNew<CR>', { desc = '[O]bsidian [N]ew [N]ote' })
       vim.keymap.set('v', '<leader>onl', '<cmd>ObsidianLinkNew<CR>', { desc = '[O]bsidian [N]ew note and [L]ink' })
-      vim.keymap.set('v', '<leader>ol', '<cmd>ObsidianLink<CR>', { desc = '[O]bsidian [L]ink word to existing note' })
+      vim.keymap.set('v', '<leader>ol', ':ObsidianLink ', { desc = '[O]bsidian [L]ink word to existing note' })
       vim.keymap.set('v', '<leader>oe', '<cmd>ObsidianExtractNote<CR>', { desc = '[O]bsidian [E]xtract note' })
       vim.keymap.set('n', '<leader>od', '<cmd>ObsidianDailies<CR>', { desc = '[O]bsidian [D]ailies notes' })
       vim.keymap.set('n', '<leader>ot', '<cmd>ObsidianTags<CR>', { desc = '[O]bsidian [T]ags' })

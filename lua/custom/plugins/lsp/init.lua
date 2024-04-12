@@ -87,7 +87,6 @@ return { -- LSP Configuration & Plugins
       tsserver = {}, -- TODO: Setup typescript-tools.nvim if needed
       eslint = {},
       jsonls = {},
-      grammarly = {},
 
       pyright = {},
 
