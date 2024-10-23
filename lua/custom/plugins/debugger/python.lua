@@ -5,6 +5,6 @@ return {
     'nvim-treesitter/nvim-treesitter',
   },
   config = function()
-    require('dap-python').setup '~/AppData/Local/nvim/.virtualenvs/debugpy/Scripts/python.exe'
+    require('dap-python').setup 'python'
   end,
 }

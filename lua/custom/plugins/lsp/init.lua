@@ -63,6 +63,7 @@ return { -- LSP Configuration & Plugins
     --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+    capabilities.textDocument.completion.completionItem.snippetSupport = true
 
     -- Enable the following language servers
     --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -73,8 +74,14 @@ return { -- LSP Configuration & Plugins
     --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
     --  - settings (table): Override the default settings passed when initializing the server.
     --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+
+    -- local capabilities = vim.lsp.protocol.make_client_capabilities()
+    -- capabilities.textDocument.completion.completionItem.snippetSupport = true
+
     local servers = {
-      clangd = {},
+      clangd = {
+        filetypes = { 'c', 'cpp', 'h', 'hpp' },
+      },
       cmake = {},
       -- gopls = {},
       -- rust_analyzer = {},
@@ -84,7 +91,7 @@ return { -- LSP Configuration & Plugins
       --    https://github.com/pmizio/typescript-tools.nvim
       --
       -- But for many setups, the LSP (`tsserver`) will work just fine
-      tsserver = {}, -- TODO: Setup typescript-tools.nvim if needed
+      -- tsserver = {}, -- TODO: Setup typescript-tools.nvim if needed
       eslint = {},
       jsonls = {},
 
@@ -102,6 +109,16 @@ return { -- LSP Configuration & Plugins
             -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
             -- diagnostics = { disable = { 'missing-fields' } },
           },
+        },
+      },
+      java_language_server = {
+        handlers = {
+          ['client/registerCapability'] = function(err, result, ctx, config)
+            local registration = {
+              registrations = { result },
+            }
+            return vim.lsp.handlers['client/registerCapability'](err, registration, ctx, config)
+          end,
         },
       },
     }

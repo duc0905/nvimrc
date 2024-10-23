@@ -174,10 +174,12 @@ require('lazy').setup({
   -- require 'custom.plugins',
   --
   require 'custom.plugins.debugger',
-
+  require 'custom.plugins.debugger.cpp',
   require 'custom.plugins.debugger.python',
 
-  require 'custom.plugins.debugger.cpp',
+  'jbyuki/instant.nvim',
+
+  -- 'Civitasv/cmake-tools.nvim',
 
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.

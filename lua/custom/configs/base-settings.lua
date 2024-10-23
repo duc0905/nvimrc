@@ -24,6 +24,8 @@ vim.opt.number = true
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = 'a'
 
+vim.opt.wrap = false
+
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
 
@@ -77,3 +79,5 @@ vim.opt.scrolloff = 10
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+
+vim.g.instant_username = 'LMD'
