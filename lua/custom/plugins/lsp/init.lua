@@ -91,11 +91,9 @@ return { -- LSP Configuration & Plugins
       --    https://github.com/pmizio/typescript-tools.nvim
       --
       -- But for many setups, the LSP (`tsserver`) will work just fine
-      -- tsserver = {}, -- TODO: Setup typescript-tools.nvim if needed
-      eslint = {},
-      jsonls = {},
-
       pyright = {},
+
+      bashls = {},
 
       lua_ls = {
         -- cmd = {...},
@@ -109,16 +107,6 @@ return { -- LSP Configuration & Plugins
             -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
             -- diagnostics = { disable = { 'missing-fields' } },
           },
-        },
-      },
-      java_language_server = {
-        handlers = {
-          ['client/registerCapability'] = function(err, result, ctx, config)
-            local registration = {
-              registrations = { result },
-            }
-            return vim.lsp.handlers['client/registerCapability'](err, registration, ctx, config)
-          end,
         },
       },
     }

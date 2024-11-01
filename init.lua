@@ -174,7 +174,7 @@ require('lazy').setup({
   -- require 'custom.plugins',
   --
   require 'custom.plugins.debugger',
-  require 'custom.plugins.debugger.cpp',
+  -- require 'custom.plugins.debugger.cpp',
   require 'custom.plugins.debugger.python',
 
   'jbyuki/instant.nvim',
