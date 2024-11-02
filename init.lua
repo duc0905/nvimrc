@@ -170,8 +170,6 @@ require('lazy').setup({
   -- require 'kickstart.plugins.lint',
 
   -- NOTE: This is my own plugins
-  require 'custom.plugins.obsidian',
-  -- require 'custom.plugins',
   --
   require 'custom.plugins.debugger',
   -- require 'custom.plugins.debugger.cpp',
