@@ -11,16 +11,17 @@ return function(dap)
     return (path and path ~= '') and path or dap.ABORT
   end
 
-  dap.adapters.cppdbg = {
+  dap.adapters.gdb = {
     id = 'gdb',
     type = 'executable',
-    command = '/cmshome/leduc7/stuff/cpptools/extension/debugAdapters/bin/OpenDebugAD7',
+    command = 'gdb',
+    args = { '--interpreter=dap'}
   }
 
   dap.configurations.c = {
     {
       name = 'Run executable',
-      type = 'cppdbg',
+      type = 'gdb',
       request = 'launch',
       program = get_file,
       cwd = '${workspaceFolder}',
@@ -28,7 +29,7 @@ return function(dap)
     },
     {
       name = 'Run executable with arguments (GDB)',
-      type = 'cppdbg',
+      type = 'gdb',
       request = 'launch',
       program = get_file,
       args = function()

@@ -19,7 +19,7 @@ return {
 
     require 'custom.configs.debugger'()
 
-    -- require 'custom.plugins.debugger.cpp'(dap)
+    require 'custom.plugins.debugger.cpp'(dap)
 
     -- Dap UI setup
     -- For more information, see |:help nvim-dap-ui|
