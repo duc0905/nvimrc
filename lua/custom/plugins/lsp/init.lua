@@ -101,6 +101,19 @@ return { -- LSP Configuration & Plugins
           },
         },
       },
+      dockerls = {},
+      docker_compose_language_service = {},
+
+      java_language_server = {
+        handlers = {
+          ['client/registerCapability'] = function(err, result, ctx, config)
+            local registration = {
+              registrations = { result },
+            }
+            return vim.lsp.handlers['client/registerCapability'](err, registration, ctx, config)
+          end,
+        },
+      },
     }
 
     -- Ensure the servers and tools above are installed

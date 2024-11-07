@@ -17,6 +17,6 @@ return { -- Useful plugin to show you pending keybinds.
     require('which-key').setup()
 
     -- Document existing key chains
-    require('which-key').register(require 'custom.configs.which-key')
+    require('which-key').add(require 'custom.configs.which-key')
   end,
 }
