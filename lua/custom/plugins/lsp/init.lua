@@ -111,6 +111,10 @@ return { -- LSP Configuration & Plugins
           },
         },
       },
+
+      dockerls = {},
+      docker_compose_language_service = {},
+
       java_language_server = {
         handlers = {
           ['client/registerCapability'] = function(err, result, ctx, config)
