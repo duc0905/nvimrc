@@ -59,11 +59,15 @@ return {
         end,
       }
 
-      require('which-key').register {
-        ['<leader>o'] = { name = '[O]bsidian', _ = 'which_key_ignore' },
-        ['<leader>on'] = { name = '[O]bsidian [N]ew', _ = 'which_key_ignore' },
-        ['<leader>og'] = { name = '[O]bsidian [G]oto', _ = 'which_key_ignore' },
-        ['<leader>oi'] = { name = '[O]bsidian [I]nsert', _ = 'which_key_ignore' },
+      require('which-key').add {
+        { '<leader>o', group = '[O]bsidian' },
+        { '<leader>o_', hidden = true },
+        { '<leader>og', group = '[O]bsidian [G]oto' },
+        { '<leader>og_', hidden = true },
+        { '<leader>oi', group = '[O]bsidian [I]nsert' },
+        { '<leader>oi_', hidden = true },
+        { '<leader>on', group = '[O]bsidian [N]ew' },
+        { '<leader>on_', hidden = true },
       }
 
       vim.keymap.set('n', '<leader>oo', '<cmd>ObsidianOpen<CR>', { desc = '[O]bsidian [O]pen note' })
