@@ -10,6 +10,17 @@ return {
       view = {
         width = 30,
       },
+      renderer = {
+        full_name = true,
+        group_empty = true,
+        icons = {
+          git_placement = 'signcolumn',
+          show = {
+            file = true,
+            git = true,
+          },
+        },
+      },
     }
     local api = require 'nvim-tree.api'
 

@@ -126,6 +126,9 @@ require('lazy').setup({
 
   require 'custom.plugins.gitsigns',
 
+  -- Session persistence
+  require 'custom.plugins.persistence',
+
   { 'tpope/vim-fugitive' },
 
   require 'custom.plugins.neogit',

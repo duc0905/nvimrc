@@ -9,10 +9,11 @@ return { -- Adds git related signs to the gutter, as well as utilities for manag
   opts = {
     signs = {
       add = { text = '+' },
-      change = { text = '~' },
+      change = { text = '┃' },
       delete = { text = '_' },
       topdelete = { text = '‾' },
       changedelete = { text = '~' },
+      untracked = { text = '┆' },
     },
   },
 }

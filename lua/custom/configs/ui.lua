@@ -3,11 +3,11 @@ return {
   -- default lazy.nvim defined Nerd Font icons, otherwise define a unicode icons table
   icons = vim.g.have_nerd_font and {} or {
     cmd = '⌘',
-    config = '🛠',
+    config = 'a',
     event = '📅',
     ft = '📂',
     init = '⚙',
-    keys = '🗝',
+    keys = 'b',
     plugin = '🔌',
     runtime = '💻',
     require = '🌙',

@@ -93,7 +93,19 @@ return { -- LSP Configuration & Plugins
       -- But for many setups, the LSP (`tsserver`) will work just fine
       pyright = {},
 
-      bashls = {},
+      cssls = {
+        init_options = {
+          provideFormatter = true,
+        },
+      },
+
+      jsonls = {
+        init_options = {
+          provideFormatter = true,
+        },
+      },
+
+      -- bashls = {},
 
       lua_ls = {
         -- cmd = {...},

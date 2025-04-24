@@ -11,7 +11,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-vim.keymap.set('n', '<C-t>', '<cmd>edit term://bash<CR>', { desc = 'Open terminal' })
+vim.keymap.set('n', '<C-t>', '<cmd>edit term://zsh<CR>', { desc = 'Open terminal' })
 
 -- TIP: Disable arrow keys in normal mode
 vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
@@ -29,9 +29,19 @@ vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower win
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
 -- NOTE: Tab management
-vim.keymap.set('n', '<C-n>', '<cmd>tabnew<CR>', { desc = 'New tab' })
+vim.keymap.set('n', '<C-n>', '<cmd>$tabnew<CR>', { desc = 'New tab' })
 vim.keymap.set('n', '<Tab>', '<cmd>tabnext<CR>', { desc = 'Next tab' })
 vim.keymap.set('n', '<S-Tab>', '<cmd>tabprevious<CR>', { desc = 'Prev tab' })
+
+vim.keymap.set('n', '<C-1>', '<cmd>tabnext 1<CR>', { desc = 'Go to tab 1' })
+vim.keymap.set('n', '<C-2>', '<cmd>tabnext 2<CR>', { desc = 'Go to tab 2' })
+vim.keymap.set('n', '<C-3>', '<cmd>tabnext 3<CR>', { desc = 'Go to tab 3' })
+vim.keymap.set('n', '<C-4>', '<cmd>tabnext 4<CR>', { desc = 'Go to tab 4' })
+vim.keymap.set('n', '<C-5>', '<cmd>tabnext 5<CR>', { desc = 'Go to tab 5' })
+vim.keymap.set('n', '<C-6>', '<cmd>tabnext 6<CR>', { desc = 'Go to tab 6' })
+vim.keymap.set('n', '<C-7>', '<cmd>tabnext 7<CR>', { desc = 'Go to tab 7' })
+vim.keymap.set('n', '<C-8>', '<cmd>tabnext 8<CR>', { desc = 'Go to tab 8' })
+vim.keymap.set('n', '<C-9>', '<cmd>tabnext 9<CR>', { desc = 'Go to tab 9' })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
