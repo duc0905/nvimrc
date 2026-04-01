@@ -62,7 +62,7 @@ return { -- LSP Configuration & Plugins
     --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
     --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
     local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+    -- capabilities = vim.tbl_deep_extend('force', capabilities, require('mini.completion').default_capabilities())
     capabilities.textDocument.completion.completionItem.snippetSupport = true
 
     -- Enable the following language servers
@@ -82,7 +82,8 @@ return { -- LSP Configuration & Plugins
       clangd = {
         filetypes = { 'c', 'cpp', 'h', 'hpp' },
       },
-      cmake = {},
+      -- cmake = {},
+      -- csharp_ls = {},
       -- gopls = {},
       -- rust_analyzer = {},
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
@@ -121,6 +122,10 @@ return { -- LSP Configuration & Plugins
           },
         },
       },
+
+      ts_ls = {},
+
+      roslyn = {},
     }
 
     -- Ensure the servers and tools above are installed
@@ -129,7 +134,12 @@ return { -- LSP Configuration & Plugins
     --    :Mason
     --
     --  You can press `g?` for help in this menu.
-    require('mason').setup()
+    require('mason').setup {
+      registries = {
+        'github:mason-org/mason-registry',
+        'github:Crashdummyy/mason-registry',
+      },
+    }
 
     -- You can add other tools here that you want Mason to install
     -- for you, so that they are available from within Neovim.
