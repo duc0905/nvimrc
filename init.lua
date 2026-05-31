@@ -63,16 +63,16 @@ require('lazy').setup({
   { 'nvim-mini/mini.sessions', version = false, opts = {} },
 
   -- NOTE: git related
-  {
-    'nvim-mini/mini-git',
-    version = false,
-    config = function()
-      require('mini.git').setup()
-    end,
-  },
-  -- { 'tpope/vim-fugitive' },
-  -- require 'custom.plugins.neogit',
-  -- require 'custom.plugins.gitsigns',
+  -- {
+  --   'nvim-mini/mini-git',
+  --   version = false,
+  --   config = function()
+  --     require('mini.git').setup()
+  --   end,
+  -- },
+  { 'tpope/vim-fugitive' },
+  require 'custom.plugins.neogit',
+  require 'custom.plugins.gitsigns',
 
   -- Debuggers
   require 'custom.plugins.debugger',
@@ -94,9 +94,9 @@ require('lazy').setup({
   { 'folke/todo-comments.nvim', event = 'VimEnter', dependencies = { 'nvim-lua/plenary.nvim' }, opts = { signs = false } },
 
   -- Transition
-  { 'nvim-mini/mini.animate', version = false, opts = {
-    scroll = { enable = false },
-  } },
+  -- { 'nvim-mini/mini.animate', version = false, opts = {
+  --   scroll = { enable = false },
+  -- } },
 
   -- Code map
   {

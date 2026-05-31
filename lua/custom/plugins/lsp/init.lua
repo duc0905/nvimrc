@@ -100,6 +100,9 @@ return { -- LSP Configuration & Plugins
         },
       },
 
+      eslint = {},
+      emmet_language_server = {},
+
       jsonls = {
         init_options = {
           provideFormatter = true,
