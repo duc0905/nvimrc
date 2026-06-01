@@ -1,12 +1,25 @@
 return {
   'nvim-mini/mini.completion',
-  version = false,
   event = 'InsertEnter',
   dependencies = {
-    { 'nvim-mini/mini.snippets', version = false, opts = {} },
+    {
+      'nvim-mini/mini.snippets',
+      config = function()
+        local gen_loader = require('mini.snippets').gen_loader
+        require('mini.snippets').setup {
+          snippets = {
+            -- Load custom file with global snippets first (adjust for Windows)
+            -- gen_loader.from_file '~/.config/nvim/snippets/global.json',
+
+            -- Load snippets based on current language by reading files from
+            -- "snippets/" subdirectories from 'runtimepath' directories.
+            gen_loader.from_lang(),
+          },
+        }
+      end,
+    },
     {
       'nvim-mini/mini.icons',
-      version = false,
       config = function()
         require('mini.icons').setup()
         require('mini.icons').tweak_lsp_kind()

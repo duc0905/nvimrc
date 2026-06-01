@@ -1,36 +1,40 @@
 return { -- Highlight, edit, and navigate code
   'nvim-treesitter/nvim-treesitter',
-  branch = 'master',
+  branch = 'main',
   lazy = false,
   build = ':TSUpdate',
-  opts = {
-    ensure_installed = {
-      'bash',
-      'c',
-      'cpp',
-      'cmake',
-      'lua',
-      'luadoc',
-      'html',
-      'css',
-      'javascript',
-      'json',
-      'typescript',
-      'tsx',
-      'markdown',
-      'markdown_inline',
-      'python',
-      'sql',
-      'vim',
-      'vimdoc',
-    },
-    -- Autoinstall languages that are not installed
-    auto_install = true,
-    highlight = {
-      enable = true,
-    },
-    indent = { enable = true },
-  },
+  -- config = function(_, opts)
+  --   -- require('nvim-treesitter.install').prefer_git = true
+  --   require('nvim-treesitter').setup(opts)
+  -- end,
+  -- opts = {
+  --   ensure_installed = {
+  --     'bash',
+  --     'c',
+  --     'cpp',
+  --     'cmake',
+  --     'lua',
+  --     'luadoc',
+  --     'html',
+  --     'css',
+  --     'javascript',
+  --     'json',
+  --     'typescript',
+  --     'tsx',
+  --     'markdown',
+  --     'markdown_inline',
+  --     'python',
+  --     'sql',
+  --     'vim',
+  --     'vimdoc',
+  --   },
+  --   -- Autoinstall languages that are not installed
+  --   auto_install = true,
+  --   highlight = {
+  --     enable = true,
+  --   },
+  --   indent = { enable = true },
+  -- },
   -- ,
   -- config = function(_, opts)
   --   -- [[ Configure Treesitter ]] See `:help nvim-treesitter`

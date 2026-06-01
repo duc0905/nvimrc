@@ -12,7 +12,7 @@ return { -- LSP Configuration & Plugins
 
     -- `neodev` configures Lua LSP for your Neovim config, runtime and plugins
     -- used for completion, annotations and signatures of Neovim apis
-    { 'folke/neodev.nvim', opts = {} },
+    { 'folke/lazydev.nvim', opts = {} },
   },
   config = function()
     -- language (such as `gopls`, `lua_ls`, `rust_analyzer`, etc.). These Language Servers
@@ -79,9 +79,7 @@ return { -- LSP Configuration & Plugins
     -- capabilities.textDocument.completion.completionItem.snippetSupport = true
 
     local servers = {
-      clangd = {
-        filetypes = { 'c', 'cpp', 'h', 'hpp' },
-      },
+      clangd = {},
       -- cmake = {},
       -- csharp_ls = {},
       -- gopls = {},
@@ -152,17 +150,9 @@ return { -- LSP Configuration & Plugins
     })
     require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
-    require('mason-lspconfig').setup {
-      handlers = {
-        function(server_name)
-          local server = servers[server_name] or {}
-          -- This handles overriding only values explicitly passed
-          -- by the server configuration above. Useful when disabling
-          -- certain features of an LSP (for example, turning off formatting for tsserver)
-          server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-          require('lspconfig')[server_name].setup(server)
-        end,
-      },
-    }
+    for name, server in pairs(servers) do
+      vim.lsp.config(name, server)
+      vim.lsp.enable(name)
+    end
   end,
 }
